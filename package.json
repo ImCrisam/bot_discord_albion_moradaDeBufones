@@ -1,0 +1,22 @@
+{
+  "name": "botguildalbion",
+  "version": "1.0.0",
+  "description": "a bot to manager guild discord in albion online",
+  "main": "app.js",
+  "scripts": {
+    "main": "app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Imcrisam",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^0.13.0",
+    "@discordjs/rest": "^0.4.1",
+    "discord-api-types": "^0.33.0",
+    "discord.js": "^13.7.0",
+    "dotenv": "^16.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
