@@ -4,7 +4,7 @@
   "description": "a bot to manager guild discord in albion online",
   "main": "app.js",
   "scripts": {
-    "main": "app.js",
+    "start": "node app",
     "dev": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
