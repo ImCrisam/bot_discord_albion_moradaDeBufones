@@ -27,6 +27,7 @@ client.on("messageCreate", (msg) => {
 		try {
 			re1s = commands[command](msg, param)
 			console.log(re1s);
+			return msg.reply(re1s)
 			
 		} catch (error) {
 			console.log(`comando '${command}' no existe`);
