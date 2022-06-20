@@ -1,6 +1,8 @@
 module.exports ={
+
+   
     help : (msg, param) => {
-        return "Descripcion de usuario"
+        msg.reply("re1s")
     },
 
     addguild : (msg, params) => {
