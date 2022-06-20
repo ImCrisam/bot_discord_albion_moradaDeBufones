@@ -5,7 +5,7 @@ module.exports = {
         "answers": {
             "hola": { 
                 "none": "msg_recruitment",
-                "admin": "msg_welcome" 
+                "985984524183814144": "msg_welcome" 
             },
             "buenas": { 
                 "none": "msg_recruitment", 

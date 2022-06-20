@@ -1,5 +1,6 @@
 const utils = require('../utils/discordjs');
 const config = require('./config');
+const answers = require('./answers');
 
 
 
@@ -12,15 +13,16 @@ module.exports ={
 
         const content = msg.content;
 		const firstWord = content.slice(0,content.indexOf(" ") != -1 ? content.indexOf(" "): undefined).replace(',', '').toLowerCase();
-		const command = configChannel.answers[firstWord]
-		if(!command) return;
+		const response = configChannel.answers[firstWord]
+		if(!response) return;
 		
-		console.log(command);
-		const roles = utils.roles_msg(msg)
-		console.log(roles);
-
-
+		console.log(response);
+		const roles = utils.roles_msg(msg).length === 1? ["none"] : utils.roles_msg(msg);
 		
+		roles.forEach(rol => {
+			if(answers.hasOwnProperty(response[rol])) answers[response[rol]](msg)
+		});
+
 		
     },
 
