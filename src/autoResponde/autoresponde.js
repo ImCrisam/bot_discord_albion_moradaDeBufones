@@ -12,7 +12,7 @@ module.exports ={
 
         const content = msg.content;
 		const firstWord = content.slice(0,content.indexOf(" ") != -1 ? content.indexOf(" "): undefined).replace(',', '').toLowerCase();
-		const command = configChannel.commands[firstWord]
+		const command = configChannel.answers[firstWord]
 		if(!command) return;
 		
 		console.log(command);
