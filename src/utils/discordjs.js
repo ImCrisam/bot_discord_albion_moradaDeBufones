@@ -18,8 +18,17 @@ module.exports = {
         } catch (error) {
             console.log(error);
         }
-
-
     },
+
+    addReactionYesNo:(msg)=>{
+        msg.react('✅');
+        msg.react('❌');
+    },
+    addReactionNo:(msg)=>{
+        msg.react('❌');
+    },
+    addReactionYes:(msg)=>{
+        msg.react('✅');
+    }
 
 }

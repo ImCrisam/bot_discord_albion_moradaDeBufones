@@ -6,9 +6,9 @@ module.exports = {
 
     help: (msg, param) => {
 
-        console.log(msg.guild.channels.cache.get("988830945522118696").send("a"));
+        console.log(param[0]);
 
-        msg.reply("re1s")
+        msg.reply("✅")
     },
 
     apply: async (msg, params, channelOut) => {
@@ -30,12 +30,17 @@ module.exports = {
             const allInfoPlayer = await Albion.getAllInfoPlayerID(playersInfo[0].Id)
             const isBanAlli = await Other.isBlackListAlli(playersInfo[0].Name)
 
-            if (!isBanAlli) { 
-                Discordjs.changeNickName(msg, "[Aplico] " + params[0]) 
-            }else{
+            if (!isBanAlli) {
+                Discordjs.changeNickName(msg, "[Aplico] " + params[0])
+            } else {
                 msg.reply(`${nick} se encuentra blacklisteado de BBB`)
             }
-            msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli))
+            const newMsg = await msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli))
+            if (isBanAlli) {
+                Discordjs.addReactionNo(newMsg);
+            } else {
+                Discordjs.addReactionYesNo(newMsg);
+            }
 
         }
 

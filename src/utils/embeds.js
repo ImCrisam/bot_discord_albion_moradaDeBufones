@@ -17,12 +17,12 @@ module.exports = {
                 },
 
                 title: "Aplicacion de " + infoPlayer.Name,
-                description: "Guild: " + infoPlayer.GuildName + ` [${infoPlayer.AllianceName}]`,
+                description: "Guild: " + infoPlayer.GuildName + (infoPlayer.AllianceName?` [${infoPlayer.AllianceName}]`:""),
                 fields: [
                     //---- general
                     {
                         name: "BlackList:",
-                        value: isBanAlli ? "SI" : "NO",
+                        value: isBanAlli ? "Si" : "No",
                         inline: true
                     },
                     {
