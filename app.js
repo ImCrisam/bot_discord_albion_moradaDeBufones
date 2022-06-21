@@ -1,7 +1,7 @@
 //link invite https://discord.com/api/oauth2/authorize?client_id=977893992006045806&permissions=8&scope=bot
 require('dotenv').config()
-const commands = require('./src/commands/commands');
-const autoResponde = require('./src/autoResponde/autoresponde');
+const commands = require('./src/commands/init');
+const autoResponde = require('./src/autoResponde/init');
 
 const prefix = process.env.PREFIX
 
@@ -24,24 +24,17 @@ client.on("messageCreate", (msg) => {
 	if (msg.content.startsWith(prefix) && msg.content.indexOf(" ") === prefix.length) {
 
 		const param = msg.content.slice(prefix.length).trim().split(/ +/);
-		const command = param.shift().toLocaleLowerCase();
-
-		try {
-			commands[command](msg, param)
-			
-		} catch (error) {
-			console.log(`comando '${command}' no existe`);
-		}
+		commands.init(msg, param);
+		
 	//AutoResponde no commands prefix
 	} else if (!msg.author.bot) {
-		
+
 		autoResponde.init(msg);
 
 
 	//msg by bots 
 	} else {
-		console.log(msg.content);
-		console.log("bot");
+		
 	}
 
 

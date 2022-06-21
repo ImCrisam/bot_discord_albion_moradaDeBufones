@@ -6,7 +6,7 @@ module.exports ={
         msg.member.roles.cache.map((rol) => {
             roles.push(rol.id)
         })
-        return roles
+        return roles.length === 1? ["none"] : roles;
     },
 
     addguild : (msg, params) => {
