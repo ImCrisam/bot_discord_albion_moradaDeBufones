@@ -12,9 +12,12 @@ module.exports ={
 		const response = configChannel.answers[firstWord]
 		if(!response) return;
 		
-				
+		let executed = [];		
 		utils.getRoles_msg(msg).forEach(rol => {
-			if(answers.hasOwnProperty(response[rol])) answers[response[rol]](msg)
+			if (answers.hasOwnProperty(response[rol]) && !executed.includes(response[rol])) {
+				answers[response[rol]](msg)
+				executed.push(response[rol])
+			}
 		});
 
 		
