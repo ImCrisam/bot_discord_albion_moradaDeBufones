@@ -4,6 +4,7 @@ const { getAllInfoPlayerID } = require('../services/tools4Albion');
 module.exports = {
 
     help: (msg, param) => {
+        console.log(msg.content);
         msg.reply("re1s")
     },
 
