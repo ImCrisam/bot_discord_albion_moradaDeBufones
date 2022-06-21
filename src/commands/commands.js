@@ -17,9 +17,9 @@ module.exports = {
         const nick = params[0];
         const playersInfo = await Albion.getInfoPlayerName(nick);
 
-        if (!playersInfo || playersInfo[0].Name !== nick) {
+        if (!playersInfo || playersInfo.length==0 || playersInfo[0].Name !== nick) {
             let res = "no se encontro nick: " + nick;
-            if (playersInfo) {
+            if (playersInfo && playersInfo.length!=0) {
                 res += ".  encontrado: ";
                 playersInfo.forEach(element => {
                     res += element.Name + ", "
@@ -27,8 +27,8 @@ module.exports = {
             }
             return msg.reply(res)
         } else {
-            const allInfoPlayer = ""//await Albion.getAllInfoPlayerID(playersInfo[0].Id)
-            const isBanAlli = ""//await Other.isBanAlli(playersInfo[0].Name)
+            const allInfoPlayer = await Albion.getAllInfoPlayerID(playersInfo[0].Id)
+            const isBanAlli = //await Other.isBanAlli(playersInfo[0].Name)
             msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli))
 
         }

@@ -1,5 +1,5 @@
 const https = require('https');
-url = "https://gameinfo.albiononline.com/api/gameinfo"
+const url = "https://gameinfo.albiononline.com/api/gameinfo"
 
 module.exports = {
 
@@ -30,7 +30,7 @@ module.exports = {
 
         return new Promise(function (resolve, reject) {
 
-            axios.get(url + "/players/" + idPlayer, res => {
+            https.get(url + "/players/" + idPlayer, res => {
                 let data = '';
                 res.on('data', chunk => {
                     data += chunk;
