@@ -14,8 +14,7 @@ module.exports = {
                 });
                 res.on('end', () => {
                     data = JSON.parse(data);
-                    data = data.players;
-                    resolve(data)
+                    resolve(data.players);
 
                 })
             }).on('error', err => {
