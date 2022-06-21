@@ -1,31 +1,36 @@
-const utils = require('../utils/discordjs');
-const albion = require('../services/tools4Albion');
-const { getAllInfoPlayerID } = require('../services/tools4Albion');
+const Discordjs = require('../utils/discordjs');
+const Embeds = require('../utils/embeds');
+const Albion = require('../services/tools4Albion');
+const Other = require('../services/other');
 module.exports = {
 
     help: (msg, param) => {
-        console.log(msg.content);
+        
+        console.log(msg.guild.channels.cache.get("988830945522118696").send("a"));
+
         msg.reply("re1s")
     },
 
-    apply: async (msg, params) => {
+    apply: async (msg, params, channelOut) => {
         if (params.length == 0) return
-
+        
         const nick = params[0];
-        const playersInfo = await albion.getInfoPlayerName(nick);
+        const playersInfo = await Albion.getInfoPlayerName(nick);
 
         if (!playersInfo || playersInfo[0].Name !== nick) {
             let res = "no se encontro nick: " + nick;
             if (playersInfo) {
                 res += ".  encontrado: ";
                 playersInfo.forEach(element => {
-                    res += element.Name+", "
+                    res += element.Name + ", "
                 });
             }
             return msg.reply(res)
         } else {
-            const allInfoPlayer = await getAllInfoPlayerID(playersInfo[0].Id)
-            
+            const allInfoPlayer = ""//await Albion.getAllInfoPlayerID(playersInfo[0].Id)
+            const isBanAlli = ""//await Other.isBanAlli(playersInfo[0].Name)
+            msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli))
+
         }
 
         //utils.changeNickName(msg, "[Aplico] "+params[0])

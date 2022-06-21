@@ -1,4 +1,4 @@
-const https = require('https')
+const https = require('https');
 url = "https://gameinfo.albiononline.com/api/gameinfo"
 
 module.exports = {
@@ -26,11 +26,11 @@ module.exports = {
 
     },
 
-    getAllInfoPlayerID: async (idPlayer) => {
+    getAllInfoPlayerID: (idPlayer) => {
 
         return new Promise(function (resolve, reject) {
 
-            https.get(url + "/players/" + idPlayer, res => {
+            axios.get(url + "/players/" + idPlayer, res => {
                 let data = '';
                 res.on('data', chunk => {
                     data += chunk;
@@ -41,7 +41,6 @@ module.exports = {
 
                 })
             }).on('error', err => {
-                console.log(err.message);
                 reject(err);
             })
         })

@@ -7,7 +7,7 @@ module.exports = {
 
 	init: (msg, param = ["none"]) => {
 
-		const configChannel = config.getConfigCommands(msg.channelId);;
+		const configChannel = config.getConfigCommands(msg.channelId);
 		if (!configChannel) return;
 
 		const execute = param.shift().toLocaleLowerCase();
@@ -15,13 +15,15 @@ module.exports = {
 		const command = configChannel.commands[execute]
 		if (!command) return;
 
+		const channelOut  = config.getConfigOutput(execute)
+
 		let executed = [];
 		utils.getRoles_msg(msg).forEach(rol => {
+			console.log(rol, " : ", command[rol], " - ", commands.hasOwnProperty(command[rol]));
 			if (commands.hasOwnProperty(command[rol]) && !executed.includes(command[rol])) {
-				commands[command[rol]](msg, param)
+				commands[command[rol]](msg, param, channelOut)
 				executed.push(command[rol])
 			}
-			console.log(rol, " : ", command[rol], " - ", commands.hasOwnProperty(command[rol]));
 		});
 
 
