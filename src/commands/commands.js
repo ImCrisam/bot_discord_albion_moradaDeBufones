@@ -28,7 +28,7 @@ module.exports = {
             return msg.reply(res)
         } else {
             const allInfoPlayer = await Albion.getAllInfoPlayerID(playersInfo[0].Id)
-            const isBanAlli = //await Other.isBanAlli(playersInfo[0].Name)
+            const isBanAlli = await Other.isBlackListAlli(playersInfo[0].Name)
             msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli))
 
         }
