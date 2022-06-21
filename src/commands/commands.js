@@ -1,4 +1,4 @@
-
+const utils = require('../utils/discordjs');
 module.exports ={
    
     help : (msg, param) => {
@@ -6,7 +6,9 @@ module.exports ={
     },
 
     addguild : (msg, params) => {
-        msg.reply(`parametros ${params}`);
+        console.log(params.length);
+        if(params.length == 0) return
+        utils.changeNickName(msg, "[Aplico] "+params[0])
     },
 
 }
