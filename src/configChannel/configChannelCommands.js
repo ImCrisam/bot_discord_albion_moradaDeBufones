@@ -7,7 +7,7 @@ module.exports = {
                 "985984524183814144": "help" 
             },
             "aplicar": { 
-                "none": "addguild", 
+                "none": "apply", 
             },
 
 

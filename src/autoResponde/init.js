@@ -4,7 +4,7 @@ const answers = require('./answers');
 
 module.exports ={
     init : (msg) => {
-		const configChannel = config.responde(msg.channelId);
+		const configChannel = config.getConfigResponde(msg.channelId);
 		if(!configChannel) return;
 		
         const content = msg.content;
@@ -13,7 +13,7 @@ module.exports ={
 		if(!response) return;
 		
 				
-		utils.roles_msg(msg).forEach(rol => {
+		utils.getRoles_msg(msg).forEach(rol => {
 			if(answers.hasOwnProperty(response[rol])) answers[response[rol]](msg)
 		});
 

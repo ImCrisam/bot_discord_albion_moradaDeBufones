@@ -3,11 +3,11 @@ const desponde = require('../configChannel/configChannelResponde');
 
 module.exports ={
    
-    commands : (channelID) => {
+    getConfigCommands : (channelID) => {
         return command[channelID]
     },
     
-    responde : (channelID) => {
+    getConfigResponde : (channelID) => {
         return desponde[channelID]
     },
 
