@@ -1,18 +1,20 @@
-const nomenclature ={
-    0:"",
-    1:"k",
-    2:"m",
-    3:"b",
-    4:"k",
+const nomenclature = {
+    0: "",
+    1: "k",
+    2: "m",
+    3: "b",
+    4: "k",
 }
 
 module.exports = {
 
-    formatFama: (value) => {
+    formatFame: (value) => {
         value = value + "";
         let result = "";
         const len = value.length;
-        switch (len % 3) {
+        let pointLocal = len % 3
+        if (value[0] == 0) return value;
+        switch (pointLocal) {
             case 0:
                 result = value[0] + value[1] + value[2];
                 break;
@@ -26,11 +28,12 @@ module.exports = {
             default:
                 break;
         }
-        result += nomenclature[Math.trunc((len-1)/3)]
-        
+        result += nomenclature[Math.trunc((len - 1) / 3)]
+
         return result
 
     },
+
 
 
 }
