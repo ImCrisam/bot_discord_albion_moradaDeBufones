@@ -1,7 +1,7 @@
 module.exports = {
 
 
-    getRoles_msg: (msg) => {
+    getRolesMsg: (msg) => {
 
         let roles = []
         msg.member.roles.cache.map((rol) => {
