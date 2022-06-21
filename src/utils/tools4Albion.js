@@ -1,7 +1,7 @@
 
 module.exports = {
     
-    ShortFameForSite: (obj) => {
+    shortFameForSite: (obj) => {
         const arr = Object.entries(obj)
         
         for (let i = 1; i < arr.length; i++) {

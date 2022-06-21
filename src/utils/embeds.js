@@ -1,5 +1,5 @@
 const { formatFame} = require('./format');
-const { ShortFameForSite: Max3FameForSite} = require('./tools4Albion');
+const { shortFameForSite: Max3FameForSite} = require('./tools4Albion');
 module.exports = {
 
     infoPlayer: (user, infoPlayer, isBanAlli) => {
