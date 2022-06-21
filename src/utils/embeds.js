@@ -1,5 +1,5 @@
 const { formatFame} = require('./format');
-const { shortFameForSite: Max3FameForSite} = require('./tools4Albion');
+const { shortFameForSite} = require('./tools4Albion');
 module.exports = {
 
     infoPlayer: (user, infoPlayer, isBanAlli) => {
@@ -9,7 +9,8 @@ module.exports = {
                 color: isBanAlli ? "ff0000" : "00bb2D",
                 author: {
                     name: user.username,
-                    icon_url: user.avatarURL()
+                    icon_url: user.avatarURL(),
+                    id: infoPlayer.Id + ""
                 },
                 thumbnail: {
                     url: user.avatarURL()
@@ -36,7 +37,7 @@ module.exports = {
                     },
                     //----3 pvp
                     {
-                        name: "Kill Fame",
+                        name: "PvP Fame",
                         value: formatFame(infoPlayer.KillFame),
                         inline: true
                     },
@@ -50,24 +51,12 @@ module.exports = {
                         value: formatFame(infoPlayer.FameRatio),
                         inline: true
                     },
-                    //-----4 pve
-                    Max3FameForSite(infoPlayer.LifetimeStatistics.PvE),
-                    {
-                        name: "PVE Total",
-                        value: formatFame(infoPlayer.LifetimeStatistics.PvE.Total),
-                        inline: false
-                    },
-                    {
-                        name: "as",
-                        value: "±" + formatFame(ffarm),
-                        inline: true
-                    },
-                    //---
-                    {
-                        name: "Farm",
-                        value: "±" + formatFame(ffarm),
-                        inline: true
-                    },
+                    //-----6 pve
+                    lineOfTreeFameArry(shortFameForSite(infoPlayer.LifetimeStatistics.PvE), "PvE"),
+                    
+                    //---9 farm
+                    lineOfTreeFameArry(shortFameForSite(infoPlayer.LifetimeStatistics.Gathering.All), "Farm"),
+                    //---12 other
                     {
                         name: "Craft",
                         value: formatFame(infoPlayer.LifetimeStatistics.Crafting.Total),
@@ -76,6 +65,11 @@ module.exports = {
                     {
                         name: "CrystalLeague",
                         value: formatFame(infoPlayer.LifetimeStatistics.CrystalLeague),
+                        inline: true
+                    },
+                    {
+                        name: "FishingFame",
+                        value: formatFame(infoPlayer.LifetimeStatistics.FishingFame),
                         inline: true
                     },
 
@@ -91,4 +85,21 @@ module.exports = {
 
 
 
+}
+
+function lineOfTreeFameArry(arry, type) {
+    let result =[]
+    for (const item of arry) {
+        result.push({
+            name: item[0]=="Outlands"?"Black":item[0],
+            value: formatFame(item[1]),
+            inline: true
+        },)
+        if(result.length>2) break
+
+    }
+    result[0].name = result[0].name+" " +type
+    return result
+
+    
 }
