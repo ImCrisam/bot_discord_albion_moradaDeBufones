@@ -1,10 +1,10 @@
 const utils = require('../utils/discordjs');
-const config = require('./config');
+const config = require('../services/configChannel');
 const answers = require('./answers');
 
 module.exports ={
     init : (msg) => {
-		const configChannel = config[msg.channelId];
+		const configChannel = config.responde(msg.channelId);
 		if(!configChannel) return;
 		
         const content = msg.content;

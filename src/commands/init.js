@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('../services/configChannel');
 const commands = require('./commands');
 const utils = require('../utils/discordjs');
 
@@ -7,11 +7,11 @@ module.exports ={
 
     init : (msg, param = ["none"]) => {
         
-		const configChannel = config[msg.channelId];
+		const configChannel = config.commands(msg.channelId);;
 		if(!configChannel) return;
 
 		const execute = param.shift().toLocaleLowerCase();
-		
+
 		const command = configChannel.commands[execute]
 		if(!command) return;
 		console.log(command);
