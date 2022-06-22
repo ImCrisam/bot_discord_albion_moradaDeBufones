@@ -2,21 +2,29 @@ const config = require('../services/configChannel');
 
 module.exports = {
 
-	init: async(interaction, user, channel) => {
+	init: async(interaction, user, client) => {
 
-        console.log(interaction);
-        console.log(user);
-        console.log("-------");
+		const channelID = interaction.message.channelId
 
-		const configChannel = config.getConfigReactions(interaction.reaction.message.channelId);
-		
-
-		let a = ""
-		a =  interaction.reaction.message.embeds
-		//a = await interaction.reaction.message.embeds.fetch()
-        console.log(a);
-		
+		const configChannel = config.getConfigReactions(channelID);
 		if (!configChannel) return;
+
+		const channel =  await client.channels.cache.get(channelID);
+
+		const msg = await channel.messages.fetch(interaction.message.id)
+
+		const confiReaction = configChannel[msg.content.toLowerCase()]
+		if(!confiReaction) return
+		
+		console.log(interaction._emoji.reaction.message.embeds);
+
+
+		//answers.hasOwnProperty(response[rol])
+		//a = await interaction.reaction.message.embeds.fetch()
+        
+		
+
+
 		// const execute = param.shift().toLocaleLowerCase();
 
 		// const command = configChannel.commands[execute]
