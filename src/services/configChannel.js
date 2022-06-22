@@ -1,6 +1,7 @@
 const command = require('../configChannel/configChannelCommands');
 const desponde = require('../configChannel/configChannelResponde');
 const configOuput = require('../configChannel/configOuput');
+const configReaction = require('../configChannel/configChannelReactions');
 
 module.exports = {
 
@@ -12,8 +13,11 @@ module.exports = {
         return desponde[channelID]
     },
 
-    getConfigOutput: (execute) => {
-        return configOuput[execute]
+    getConfigOutput: (channelID) => {
+        return configOuput[channelID]
+    },
+    getConfigReactions: (channelID) => {
+        return configReaction[channelID]
     }
 
 }
