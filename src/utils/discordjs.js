@@ -1,8 +1,17 @@
-module.exports = {
+ const getMemberById = async  (client, idMember) => {
+    let myGuild = client.guilds.cache.get("819930498553217044")
+    if(!myGuild) myGuild =  await client.guilds.fetch('819930498553217044');
+    if (!myGuild) return undefined;
 
+    let member = myGuild.members.cache.get(idMember);
+    if(!member) member =  await myGuild.members.fetch(idMember);
+    return member
+};
+
+module.exports = { getMemberById,
 
     getRolesByMsg: (msg) => {
-
+        if (!msg) return;
         let roles = []
         msg.member.roles.cache.map((rol) => {
             roles.push(rol.id)
@@ -10,10 +19,10 @@ module.exports = {
         return roles.length === 1 ? ["none"] : roles;
     },
 
-    getRolesById: (client, idMember) => {
+    getRolesById: async (client, idMember) => {
 
-        const myGuild = client.guilds.cache.get('819930498553217044');
-        const user = myGuild.members.cache.get(idMember)
+        const user = await getMemberById(client, idMember);
+        if (!user) return [];
         let roles = []
         user.roles.cache.map((rol) => {
             roles.push(rol.id)
@@ -21,14 +30,11 @@ module.exports = {
         return roles.length === 1 ? ["none"] : roles;
     },
 
-    addRolesMsg: async(msg, idUser, idRol) => {
+    addRolesMsg: async(member, idRol) => {
 
-        const user = await msg.guild.members.cache.get(idUser);
-        //console.log(user);
-
-        if(msg.member.roles.cache.has(idRol)) console.log("usuario con roles");
+        if(member.roles.cache.has(idRol)) console.log("usuario con roles");
         try {
-            msg.member.roles.add(idRol);
+            member.roles.add(idRol);
             return true
         } catch (error) {
             return false
