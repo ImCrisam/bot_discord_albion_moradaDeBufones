@@ -11,13 +11,12 @@ module.exports = {
                 author: {
                     name: user.id,
                     icon_url: user.avatarURL(),
-                    id: infoPlayer.Id + ""
                 },
                 thumbnail: {
                     url: user.avatarURL()
                 },
 
-                title: "Aplicacion de " + infoPlayer.Name,
+                title: infoPlayer.Name,
                 description: "Guild: " + infoPlayer.GuildName + (infoPlayer.AllianceName?` [${infoPlayer.AllianceName}]`:""),
                 fields: [
                     //---- general

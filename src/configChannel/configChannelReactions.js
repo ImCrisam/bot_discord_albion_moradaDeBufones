@@ -7,7 +7,7 @@ module.exports = {
                 "content":""
             },
             "❌":{
-                "action": "deleteMsg",
+                "action": "delete",
                 "roles":["985984524183814144"],
                 "content":""
             }

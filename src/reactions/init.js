@@ -1,6 +1,6 @@
-const config = require('../services/configChannel');
-const discordjs = require('../utils/discordjs');
-const actions = require('./actions');
+const Config = require('../services/configChannel');
+const Discordjs = require('../utils/discordjs');
+const Actions = require('./actions');
 
 module.exports = {
 
@@ -8,7 +8,7 @@ module.exports = {
 
 		const channelID = interaction.message.channelId
 
-		const configChannel = config.getConfigReactions(channelID);
+		const configChannel = Config.getConfigReactions(channelID);
 		if (!configChannel) return;
 
 		const channel = await Client.channels.cache.get(channelID);
@@ -18,13 +18,13 @@ module.exports = {
 		const confiReaction = msg.content ? configChannel[msg.content.toLowerCase()][interaction._emoji.name] : undefined
 		if (!confiReaction) return;
 
-		if (!actions.hasOwnProperty(confiReaction.action)) return;
+		if (!Actions.hasOwnProperty(confiReaction.action)) return;
 
-		let rolesUser =  await discordjs.getRolesById(Client, user.id);
+		let rolesUser =  await Discordjs.getRolesById(Client, user.id);
 		
 		confiReaction.roles.forEach((rol) => {
 			if(rolesUser.includes(rol)){
-				actions[confiReaction.action](interaction, user, Client)
+				Actions[confiReaction.action](interaction, user, Client)
 				return;
 			}
 		})

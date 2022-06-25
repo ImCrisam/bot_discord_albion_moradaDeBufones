@@ -1,14 +1,15 @@
- const getMemberById = async  (client, idMember) => {
+const getMemberById = async (client, idMember) => {
     let myGuild = client.guilds.cache.get("819930498553217044")
-    if(!myGuild) myGuild =  await client.guilds.fetch('819930498553217044');
+    if (!myGuild) myGuild = await client.guilds.fetch('819930498553217044');
     if (!myGuild) return undefined;
 
     let member = myGuild.members.cache.get(idMember);
-    if(!member) member =  await myGuild.members.fetch(idMember);
+    if (!member) member = await myGuild.members.fetch(idMember);
     return member
 };
 
-module.exports = { getMemberById,
+module.exports = {
+    getMemberById,
 
     getRolesByMsg: (msg) => {
         if (!msg) return;
@@ -30,35 +31,40 @@ module.exports = { getMemberById,
         return roles.length === 1 ? ["none"] : roles;
     },
 
-    addRolesMsg: async(member, idRol) => {
+    addRolesMember: async (member, idRol) => {
 
-        if(member.roles.cache.has(idRol)) console.log("usuario con roles");
+        if (member.roles.cache.has(idRol)) console.log("usuario con roles");
         try {
-            member.roles.add(idRol);
+            await member.roles.add(idRol);
             return true
         } catch (error) {
             return false
         }
     },
 
-    changeNickName: (msg, nickname) => {
-        
+    changeNickName: (member, tag, nickname) => {
         try {
-            msg.member.setNickname(nickname);
-            
+            member.setNickname(tag + " " + nickname);
+
         } catch (error) {
             console.log(error);
         }
     },
 
-    addReactionYesNo:(msg)=>{
+    deleteMsg: (msg, milisg) => {
+        setTimeout(() => {
+            msg.delete();
+            }, milisg);
+    },
+
+    addReactionYesNo: (msg) => {
         msg.react('✅');
         msg.react('❌');
     },
-    addReactionNo:(msg)=>{
+    addReactionNo: (msg) => {
         msg.react('❌');
     },
-    addReactionYes:(msg)=>{
+    addReactionYes: (msg) => {
         msg.react('✅');
     }
 

@@ -1,13 +1,13 @@
-const config = require('../services/configChannel');
-const commands = require('./commands');
-const utils = require('../utils/discordjs');
+const Config = require('../services/configChannel');
+const Commands = require('./commands');
+const Utils = require('../utils/discordjs');
 
 
 module.exports = {
 
 	init: (msg, param = ["none"]) => {
 
-		const configChannel = config.getConfigCommands(msg.channelId);
+		const configChannel = Config.getConfigCommands(msg.channelId);
 		if (!configChannel) return;
 
 		const execute = param.shift().toLocaleLowerCase();
@@ -15,13 +15,13 @@ module.exports = {
 		const command = configChannel.commands[execute]
 		if (!command) return;
 
-		const channelOut  = config.getConfigOutput(execute)
+		const channelOut  = Config.getConfigOutput(execute)
 
 		let executed = [];
-		utils.getRolesByMsg(msg).forEach(rol => {
-			console.log(rol, " : ", command[rol], " - ", commands.hasOwnProperty(command[rol]));
-			if (commands.hasOwnProperty(command[rol]) && !executed.includes(command[rol])) {
-				commands[command[rol]](msg, param, channelOut)
+		Utils.getRolesByMsg(msg).forEach(rol => {
+			console.log(rol, " : ", command[rol], " - ", Commands.hasOwnProperty(command[rol]));
+			if (Commands.hasOwnProperty(command[rol]) && !executed.includes(command[rol])) {
+				Commands[command[rol]](msg, param, channelOut)
 				executed.push(command[rol])
 			}
 		});
