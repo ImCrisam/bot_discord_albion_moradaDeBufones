@@ -9,7 +9,7 @@ module.exports = {
             embeds: [{
                 color: isBanAlli ? "ff0000" : "00bb2D",
                 author: {
-                    name: user.username,
+                    name: user.id,
                     icon_url: user.avatarURL(),
                     id: infoPlayer.Id + ""
                 },

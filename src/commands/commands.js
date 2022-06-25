@@ -6,9 +6,9 @@ module.exports = {
 
     help: (msg, param) => {
 
-        console.log(param[0]);
+        console.log(msg);
 
-        msg.reply("✅")
+        //msg.reply("✅")
     },
 
     apply: async (msg, params, channelOut) => {
@@ -34,6 +34,7 @@ module.exports = {
                 Discordjs.changeNickName(msg, "[Aplico] " + params[0])
             } else {
                 msg.reply(`${nick} se encuentra blacklisteado de BBB`)
+                Discordjs.changeNickName(msg, "[BList] " + params[0])
             }
             const newMsg = await msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli))
             if (isBanAlli) {

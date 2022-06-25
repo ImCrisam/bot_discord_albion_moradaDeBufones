@@ -23,7 +23,7 @@ client.once('ready', (bot) => {
 });
 
 client.on('messageReactionAdd', (interaction, user) => {
-
+	
 	if(user.bot) return;
 	reaction.init(interaction, user, client)
 });

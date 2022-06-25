@@ -13,7 +13,7 @@ module.exports ={
 		if(!response) return;
 		
 		let executed = [];		
-		utils.getRolesMsg(msg).forEach(rol => {
+		utils.getRolesByMsg(msg).forEach(rol => {
 			if (answers.hasOwnProperty(response[rol]) && !executed.includes(response[rol])) {
 				answers[response[rol]](msg)
 				executed.push(response[rol])
