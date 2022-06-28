@@ -29,6 +29,7 @@ module.exports = {
         } else {
             const allInfoPlayer = await Albion.getAllInfoPlayerID(playersInfo[0].Id)
             const isBanAlli = await Other.isBlackListAlli(playersInfo[0].Name)
+            console.log(allInfoPlayer);
 
             if (!isBanAlli) {
                 Discordjs.changeNickName(msg.member, "[Aplico] " , params[0])
@@ -37,6 +38,12 @@ module.exports = {
                 Discordjs.changeNickName(msg.member, "[BList] " , params[0])
             }
             const newMsg = await msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli))
+            if (newMsg) {
+                msg.reply("Enviada").then((m) => {
+                    Discordjs.deleteMsg(m, 3500)
+                    Discordjs.deleteMsg(msg, 3000)
+                })
+            }
             if (isBanAlli) {
                 Discordjs.addReactionNo(newMsg);
             } else {

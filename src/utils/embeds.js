@@ -26,7 +26,7 @@ module.exports = {
                         inline: true
                     },
                     {
-                        name: '\u200b',
+                        name: 'REF',
                         value: '\u200b',
                         inline: true,
                     },
@@ -71,6 +71,11 @@ module.exports = {
                         name: "FishingFame",
                         value: formatFame(infoPlayer.LifetimeStatistics.FishingFame),
                         inline: true
+                    },
+                    {
+                        name: "Mas info",
+                        value: "Click me (https://albiondb.net/player/"+infoPlayer.Name+")",
+                        inline: false
                     },
 
 
