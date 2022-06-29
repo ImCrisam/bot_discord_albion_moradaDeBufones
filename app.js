@@ -33,7 +33,6 @@ client.on("messageCreate", (msg) => {
 
 	//Commands with prefix
 	if (msg.content.startsWith(prefix) && msg.content.indexOf(" ") === prefix.length) {
-
 		const param = msg.content.slice(prefix.length).trim().split(/ +/);
 		commands.init(msg, param);
 		

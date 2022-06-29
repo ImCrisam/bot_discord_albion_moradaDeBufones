@@ -22,7 +22,7 @@ module.exports = {
                     //---- general
                     {
                         name: 'REF',
-                        value: params.slice(1).join(" "),
+                        value: params[1] ? params.slice(1).join(" "):'\u200b',
                         inline: false,
                     },
                     {
