@@ -2,7 +2,7 @@ const { formatFame} = require('./format');
 const { shortFameForSite} = require('./tools4Albion');
 module.exports = {
 
-    infoPlayer: (user, infoPlayer, isBanAlli) => {
+    infoPlayer: (user, infoPlayer, isBanAlli, params) => {
         const ffarm = infoPlayer.LifetimeStatistics.Gathering.All.Total + infoPlayer.LifetimeStatistics.FarmingFame + infoPlayer.LifetimeStatistics.FishingFame;
         return {
             content: 'Apply',
@@ -17,22 +17,27 @@ module.exports = {
                 },
 
                 title: infoPlayer.Name,
-                description: "Guild: " + infoPlayer.GuildName + (infoPlayer.AllianceName?` [${infoPlayer.AllianceName}]`:""),
+                description:"Guild: "+ infoPlayer.GuildName ?  + infoPlayer.GuildName + (infoPlayer.AllianceName?` [${infoPlayer.AllianceName}]`:""):"No tiene",
                 fields: [
                     //---- general
                     {
-                        name: "BlackList:",
-                        value: isBanAlli ? "Si" : "No",
-                        inline: true
-                    },
-                    {
                         name: 'REF',
-                        value: '\u200b',
-                        inline: true,
+                        value: params.slice(1).join(" "),
+                        inline: false,
                     },
                     {
                         name: "Fama Total",
                         value: formatFame(infoPlayer.LifetimeStatistics.PvE.Total + infoPlayer.KillFame + infoPlayer.LifetimeStatistics.Crafting.Total + ffarm),
+                        inline: true
+                    },
+                    {
+                        name: '\u200b',
+                        value: '\u200b',
+                        inline: true,
+                    },
+                    {
+                        name: "BlackList:",
+                        value: isBanAlli ? "Si" : "No",
                         inline: true
                     },
                     //----3 pvp
@@ -74,7 +79,7 @@ module.exports = {
                     },
                     {
                         name: "Mas info",
-                        value: "Click me (https://albiondb.net/player/"+infoPlayer.Name+")",
+                        value: "[Click me](https://albiondb.net/player/"+infoPlayer.Name+")",
                         inline: false
                     },
 

@@ -25,19 +25,24 @@ module.exports = {
                     res += element.Name + ", "
                 });
             }
-            return msg.reply(res)
+            return msg.reply(res).then((m) => {
+                Discordjs.deleteMsg(m, 7000)
+                Discordjs.deleteMsg(msg, 3000)
+            })
         } else {
             const allInfoPlayer = await Albion.getAllInfoPlayerID(playersInfo[0].Id)
             const isBanAlli = await Other.isBlackListAlli(playersInfo[0].Name)
-            console.log(allInfoPlayer);
 
             if (!isBanAlli) {
                 Discordjs.changeNickName(msg.member, "[Aplico] " , params[0])
             } else {
-                msg.reply(`${nick} se encuentra blacklisteado de BBB`)
+                msg.reply(`${nick} se encuentra blacklisteado de BBB`).then((m) => {
+                    Discordjs.deleteMsg(m, 7000)
+                    Discordjs.deleteMsg(msg, 3000)
+                })
                 Discordjs.changeNickName(msg.member, "[BList] " , params[0])
             }
-            const newMsg = await msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli))
+            const newMsg = await msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli, params))
             if (newMsg) {
                 msg.reply("Enviada").then((m) => {
                     Discordjs.deleteMsg(m, 3500)

@@ -18,7 +18,7 @@ const client = new Client({
 client.once('ready', (bot) => {
 	console.log(bot.presence.status);
 	
-	client.user.setActivity(' ', { type: 'WATCHING' });
+	client.user.setActivity(' La morada', { type: 'WATCHING' });
 	client.user.setStatus('online');
 });
 
@@ -40,7 +40,7 @@ client.on("messageCreate", (msg) => {
 	//AutoResponde no commands prefix
 	} else if (!msg.author.bot) {
 
-		autoResponde.init(msg);
+		//autoResponde.init(msg);
 
 
 	//msg by bots 
