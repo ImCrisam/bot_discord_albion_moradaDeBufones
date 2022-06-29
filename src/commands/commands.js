@@ -37,16 +37,16 @@ module.exports = {
                 Discordjs.changeNickName(msg.member, "[Aplico] " , params[0])
             } else {
                 msg.reply(`${nick} se encuentra blacklisteado de BBB`).then((m) => {
-                    Discordjs.deleteMsg(m, 7000)
-                    Discordjs.deleteMsg(msg, 3000)
+                    Discordjs.deleteMsg(m, 5000)
+                    Discordjs.deleteMsg(msg, 5500)
                 })
                 Discordjs.changeNickName(msg.member, "[BList] " , params[0])
             }
             const newMsg = await msg.guild.channels.cache.get(channelOut).send(Embeds.infoPlayer(msg.author, allInfoPlayer, isBanAlli, params))
             if (newMsg) {
                 msg.reply("Enviada").then((m) => {
-                    Discordjs.deleteMsg(m, 3500)
-                    Discordjs.deleteMsg(msg, 3000)
+                    Discordjs.deleteMsg(m, 3000)
+                    Discordjs.deleteMsg(msg, 3500)
                 })
             }
             if (isBanAlli) {
