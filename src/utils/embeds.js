@@ -17,7 +17,7 @@ module.exports = {
                 },
 
                 title: infoPlayer.Name,
-                description:"Guild: "+ infoPlayer.GuildName ?  + infoPlayer.GuildName + (infoPlayer.AllianceName?` [${infoPlayer.AllianceName}]`:""):"No tiene",
+                description:"Guild: "+ infoPlayer.GuildName + (infoPlayer.AllianceName?` [${infoPlayer.AllianceName}]`:""),
                 fields: [
                     //---- general
                     {
